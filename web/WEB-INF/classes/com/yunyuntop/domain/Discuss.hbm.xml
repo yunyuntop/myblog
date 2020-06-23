@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<!-- 配置类和表结构的映射 -->
+	<class name="com.yunyuntop.domain.Discuss" table="discuss">
+		<!-- 配置id 见到name属性，JavaBean的属性 见到column属性，是表结构的字段 -->
+		<id name="did" column="did">
+			<!-- 主键的生成策略 -->
+			<generator class="uuid" />
+		</id>
+
+		<!-- 配置其他的属性 -->
+		
+		
+		
+		<property name="dtext" column="dtext" />
+		<property name="dtime" column="dtime" />
+		
+        <many-to-one name="blog"  column="bid" class="com.yunyuntop.domain.Blogs" lazy="false"></many-to-one>   
+		<many-to-one name="user"  column="uid" class="com.yunyuntop.domain.User"  lazy="false"></many-to-one>
+	
+		
+
+	
+	</class>
+
+</hibernate-mapping>    

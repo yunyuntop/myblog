@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<!-- 配置类和表结构的映射 -->
+	<class name="com.yunyuntop.domain.Blogs" table="blogs">
+		<!-- 配置id 
+			见到name属性，JavaBean的属性
+			见到column属性，是表结构的字段
+		-->
+		<id name="bid" column="bid">
+			<!-- 主键的生成策略 -->
+			<generator class="uuid"/>
+		</id>	
+		
+		<!-- 配置其他的属性 -->
+		<property name="bimg" column="bimg" />
+		<property name="totallook" column="totallook" />
+		<property name="greatecount" column="greatecount" />
+		<property name="discusscount" column="discusscount" />
+		<property name="btime" column="btime"/>
+		<property name="cid" column="cid"/>
+		<property name="btitle" column="btitle"/>
+		<property name="bheader" column="bheader"/>
+		<property name="author" column="author"/>
+		<set name="discussSet"  lazy="false" cascade="delete">
+			<key column="bid" />
+			<one-to-many class="com.yunyuntop.domain.Discuss" />
+		</set>
+		<set name="greateSet"  lazy="false" cascade="delete">
+			<key column="bid" />
+			<one-to-many class="com.yunyuntop.domain.Greate" />
+		</set> 
+		<set name="kindsSet" table="blogs_kinds" lazy="false">
+                    <key column="bid"/>
+                    <many-to-many class="com.yunyuntop.domain.Kinds" column="kid"/>
+        </set>
+		
+		  
+	</class>
+	
+</hibernate-mapping>    

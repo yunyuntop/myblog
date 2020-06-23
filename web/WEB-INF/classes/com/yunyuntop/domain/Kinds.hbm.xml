@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<!-- 配置类和表结构的映射 -->
+	<class name="com.yunyuntop.domain.Kinds" table="kinds">
+		<!-- 配置id 见到name属性，JavaBean的属性 见到column属性，是表结构的字段 -->
+		<id name="kid" column="kid">
+			<!-- 主键的生成策略 -->
+			<generator class="uuid" />
+		</id>
+
+		<!-- 配置其他的属性 -->
+		<property name="ktext" column="ktext" />
+		
+		 <set name="blogsSet" table="blogs_kinds" lazy="false" inverse="true"><!-- 由于添加一个blog就要为类别blog加一个记录所以应该blog加维护了 -->
+                    <key column="kid"/>
+                    <many-to-many class="com.yunyuntop.domain.Blogs" column="bid"/>
+         </set>
+		
+	
+		
+
+	
+	</class>
+
+</hibernate-mapping>    
